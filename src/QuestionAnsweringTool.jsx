@@ -48,7 +48,7 @@ const QuestionAnsweringTool = () => {
 
   return (
     <div className="login-box">
-      <h2 className="h3">Question Answering Tool</h2>
+      <h2 className="h1 h3">Question Answering Tool</h2>
       <div className="user-box">
         <textarea
           className="form-control custom-input"
