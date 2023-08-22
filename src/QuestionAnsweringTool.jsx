@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './QuestionAnsweringTool.css'; // Import your custom CSS file
+import React, { useState } from "react";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./QuestionAnsweringTool.css"; // Import your custom CSS file
 
-const fixedText = "Xylitol is also known as birch sugar. Xylitol tastes just as sweet as sugar, and you can replace it one-to-one in recipes. But why should you do that? Birch sugar has some positive advantages over table sugar. On the one hand, it is tooth-friendly and even has a non-cariogenic effect, i.e. it does not cause caries. Secondly, xylitol is particularly popular because of its low glycemic index. It has a glycemic index of 7 to 11, while that of regular sugar is 65 to 100. So if you want to consciously avoid the negative properties of sugar, but not its sweetness, you should give xylitol a try. However, in moderation, because in high doses it can have a laxative effect. Birch sugar should also be kept away from dogs, as it can even be fatal for the four-legged friends.";
+const fixedText =
+  "Xylitol is also known as birch sugar. Xylitol tastes just as sweet as sugar, and you can replace it one-to-one in recipes. But why should you do that? Birch sugar has some positive advantages over table sugar. On the one hand, it is tooth-friendly and even has a non-cariogenic effect, i.e. it does not cause caries. Secondly, xylitol is particularly popular because of its low glycemic index. It has a glycemic index of 7 to 11, while that of regular sugar is 65 to 100. So if you want to consciously avoid the negative properties of sugar, but not its sweetness, you should give xylitol a try. However, in moderation, because in high doses it can have a laxative effect. Birch sugar should also be kept away from dogs, as it can even be fatal for the four-legged friends.";
 const fixedQuestion = "What is the advantage of birch sugar?";
 
 const QuestionAnsweringTool = () => {
-  const [inputText, setInputText] = useState('');
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
-  const [contextBefore, setContextBefore] = useState('');
-  const [contextAfter, setContextAfter] = useState('');
+  const [inputText, setInputText] = useState("");
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [contextBefore, setContextBefore] = useState("");
+  const [contextAfter, setContextAfter] = useState("");
 
   const handleAnswer = async () => {
     try {
       const response = await axios.post(
-        'https://api-inference.huggingface.co/models/deepset/roberta-base-squad2',
+        "https://api-inference.huggingface.co/models/deepset/roberta-base-squad2",
         {
           inputs: {
             context: inputText,
@@ -37,7 +38,7 @@ const QuestionAnsweringTool = () => {
       setContextBefore(contextBefore);
       setContextAfter(contextAfter);
     } catch (error) {
-      console.error('Error fetching answer:', error);
+      console.error("Error fetching answer:", error);
     }
   };
 
@@ -61,26 +62,22 @@ const QuestionAnsweringTool = () => {
       <div className="user-box">
         <input
           type="text"
-          className="form-control custom-input"
+          className=""
           placeholder="Enter your question..."
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         />
-        <button className="question btn custom-btn custom-btn-primary" onClick={handleAnswer}>
-          <a href="#">
-            Get Answer
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
+        <button
+          className="question btn custom-btn custom-btn-primary"
+          onClick={handleAnswer}
+        >
+          Get Answer
         </button>
-        <button className="question btn custom-btn custom-btn-primary ml-2" onClick={handleLoadFixedTextAndQuestion}>
-          for example 
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+        <button
+          className="question btn custom-btn custom-btn-primary "
+          onClick={handleLoadFixedTextAndQuestion}
+        >
+          for example
         </button>
       </div>
       {answer && (
